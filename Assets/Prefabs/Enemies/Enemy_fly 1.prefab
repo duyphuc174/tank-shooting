@@ -192,6 +192,8 @@ MonoBehaviour:
   damage: 30
   tank: {fileID: 0}
   exp: 10
+  aus: {fileID: 0}
+  destroySound: {fileID: 8300000, guid: 0b5e5580a13a5d846aa44e0f0c69d4cf, type: 3}
 --- !u!114 &5488873708426520542
 MonoBehaviour:
   m_ObjectHideFlags: 0

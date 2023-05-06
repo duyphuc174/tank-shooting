@@ -15,6 +15,9 @@ public class Gun : MonoBehaviour
 
 	private float timeBtwFire;
 
+	public AudioSource aus;
+	public AudioClip bulletSound;
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -52,5 +55,10 @@ public class Gun : MonoBehaviour
 
 		Rigidbody2D rb = bulletTmp.GetComponent<Rigidbody2D>();
 		rb.AddForce(transform.up * bulletForce, ForceMode2D.Impulse);
+
+		if(bulletSound && aus)
+		{
+			aus.PlayOneShot(bulletSound);
+		}
 	}
 }
