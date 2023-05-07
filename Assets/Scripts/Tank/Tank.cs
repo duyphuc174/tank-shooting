@@ -100,6 +100,7 @@ public class Tank : MonoBehaviour
             (transform.position.y >=24 && moveInput.y > 0))
 		{
 			return;
+
 		}
 
 		transform.position += moveInput * moveSpeed * Time.deltaTime;
