@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
             if(enemy != null)
             {
                 enemy.TakeDamage(damage);
-                tank.IncreaseHealth();
+               
             }
             Destroy(this.gameObject);
         }
