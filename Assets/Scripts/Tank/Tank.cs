@@ -55,6 +55,7 @@ public class Tank : MonoBehaviour
 			}
 		}
 	}
+    
 	private void UpdateMaxExp()
     {
         maxExp = 100 * level;
