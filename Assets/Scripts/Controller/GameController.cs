@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject enemy;
+    public GameObject enemy2;
     public Tank tank;
 
 
@@ -20,13 +21,18 @@ public class GameController : MonoBehaviour
 
     public int highScore;
     public int score;
+    private int enemyNumber;
+    public int maxEnemyNumber = 5;
 
     UIManager ui;
 
 	// Start is called before the first frame update
 	void Start()
     {
-        m_spawnTime = 0.5f;
+        Time.timeScale = 1;
+
+		m_spawnTime = 1f;
+        enemyNumber = 0;
         ReadHighScore();
         tank = FindObjectOfType<Tank>();
         ui = FindObjectOfType<UIManager>();
@@ -84,12 +90,44 @@ public class GameController : MonoBehaviour
         float randXpos1 = Random.Range(tank.transform.position.x +(-11f), tank.transform.position.x + 11f);
 		Vector2 spawnPos1 = new Vector2(randXpos1, tank.transform.position.y + 5f);
 		Vector2 spawnPos2 = new Vector2(randXpos1, tank.transform.position.y - 5f);
-		if (enemy)
+
+        Vector2 spawnPos;
+        int ranEnemy = Random.Range(1,3);
+        int ranPos = Random.Range(1,3);
+        if(ranPos == 1)
         {
-            Instantiate(enemy, spawnPos1, Quaternion.identity);
-            Instantiate(enemy, spawnPos2, Quaternion.identity);
+            spawnPos = spawnPos1;
+        }
+        else
+        {
+            spawnPos = spawnPos2;
+        }
+		if (enemy && enemyNumber <= maxEnemyNumber)
+        {
+            if(ranEnemy == 1)
+            {
+                Instantiate(enemy, spawnPos, Quaternion.identity);
+            }
+            if(ranEnemy == 2)
+            {
+
+                Instantiate(enemy2, spawnPos, Quaternion.identity);
+            }
+			enemyNumber++;
 		}
     }
+
+    public void DieEnemy()
+    {
+        enemyNumber--;
+    }
+
+    public void SetMaxEnemyNumber(int lv)
+    {
+        maxEnemyNumber += lv;
+    }
+
+
 	
 	public void GameOver()
     {
