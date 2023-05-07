@@ -12,7 +12,7 @@ public class Tank : MonoBehaviour
     public int maxExp;
     public int exp = 0;
     public int damageDefend = 100;
-    private bool gameOver = false;
+    private bool isDie = false;
 
     UIManager ui;
 
@@ -35,7 +35,7 @@ public class Tank : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameOver)
+        if (isDie)
         {
             return;
         }
@@ -68,7 +68,7 @@ public class Tank : MonoBehaviour
 
     private void IncreaseSpeed()
     {
-        moveSpeed += 0.5f;
+        moveSpeed += 0.2f;
     }
 
     private void Move()
@@ -100,14 +100,15 @@ public class Tank : MonoBehaviour
         ui.SetHealthText("HP: " + health.ToString() + "/" + maxHealth.ToString());
         if(health <= 0)
         {
-            GameOver();
+			ui.ShowGameOverPanel(true);
+			isDie = true;
         }
     }
 
-    public void GameOver()
+    public bool IsDie()
     {
-        gameOver = true;
-        ui.ShowGameOverPanel(true);
+        return isDie;
+        
     }
 
     public void LevelUp()
