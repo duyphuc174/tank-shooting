@@ -8,8 +8,9 @@ public class GameController : MonoBehaviour
     public GameObject enemy;
     public Tank tank;
 
-    public float spawnTime;
 
+	public float spawnTime;
+    
     float m_spawnTime;
 
     bool isGameOver;
@@ -34,7 +35,8 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(tank.IsDie())
+	
+		if (tank.IsDie())
         {
             GameOver();
         }
@@ -47,6 +49,7 @@ public class GameController : MonoBehaviour
         UpdateHighScore(score);
         ui.SetHighScoreText("High Score: " + highScore.ToString());
         ui.SetScoreText("Score: " + score.ToString());  
+        
     }
 
     private void ReadHighScore()
@@ -87,8 +90,8 @@ public class GameController : MonoBehaviour
             Instantiate(enemy, spawnPos2, Quaternion.identity);
 		}
     }
-
-    public void GameOver()
+	
+	public void GameOver()
     {
         Time.timeScale = 0;
     }
