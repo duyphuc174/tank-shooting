@@ -5,8 +5,11 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 
+	// ??n
 	public GameObject bullet;
+	// kcach l?a 
 	public Transform firePos;
+	// H?ng súng
 	public GameObject muzzle;
 	public GameObject fireEffect;
 
