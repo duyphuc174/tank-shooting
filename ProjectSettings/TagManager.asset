@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy_fly
   - Enemy
+  - Tank
   layers:
   - Default
   - TransparentFX
