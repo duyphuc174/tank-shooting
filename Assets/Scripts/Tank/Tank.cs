@@ -14,7 +14,12 @@ public class Tank : MonoBehaviour
     public int damageDefend = 100;
     private bool isDie = false;
 
-    UIManager ui;
+	public AudioClip hitSound;
+	AudioSource audioSource;
+
+    GameController gameController;
+
+	UIManager ui;
 
     public Vector3 moveInput;
 
@@ -24,7 +29,9 @@ public class Tank : MonoBehaviour
 	void Start()
     {
         ui = FindObjectOfType<UIManager>();
-        UpdateMaxExp();
+        gameController = FindObjectOfType<GameController>();
+		audioSource = FindObjectOfType<AudioSource>();
+		UpdateMaxExp();
         UpDateMaxHealth();
         health = maxHealth;
 		rb = GetComponent<Rigidbody2D>();
@@ -39,8 +46,19 @@ public class Tank : MonoBehaviour
         {
             return;
         }
-        Move();
+		Move();
+        ui.SetHealthText("HP: " + health.ToString() + "/" + maxHealth.ToString());
         LevelUp();
+    }
+
+    public void IncreaseHealth()
+    {
+        if(health >= maxHealth)
+        {
+            health = maxHealth;
+            return;
+        }
+        health += 10;
     }
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -73,8 +91,16 @@ public class Tank : MonoBehaviour
 
     private void Move()
     {
-		moveInput.x = Input.GetAxis("Horizontal");
-		moveInput.y = Input.GetAxis("Vertical");
+        moveInput.x = Input.GetAxis("Horizontal");
+        moveInput.y = Input.GetAxis("Vertical");
+
+        if ((transform.position.x <= -39 && moveInput.x < 0) ||
+            (transform.position.x >= 39 && moveInput.x > 0) ||
+            (transform.position.y <= -24 && moveInput.y < 0) || 
+            (transform.position.y >=24 && moveInput.y > 0))
+		{
+			return;
+		}
 
 		transform.position += moveInput * moveSpeed * Time.deltaTime;
 
@@ -97,15 +123,18 @@ public class Tank : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        audioSource.PlayOneShot(hitSound);
         ui.SetHealthText("HP: " + health.ToString() + "/" + maxHealth.ToString());
         if(health <= 0)
         {
 			ui.ShowGameOverPanel(true);
 			isDie = true;
         }
+
     }
 
-    public bool IsDie()
+
+	public bool IsDie()
     {
         return isDie;
         
@@ -123,6 +152,7 @@ public class Tank : MonoBehaviour
             exp -= maxExp;
             UpdateMaxExp();
             UpDateMaxHealth();
+            gameController.SetMaxEnemyNumber(level);
             IncreaseSpeed();
             ui.SetLevelText("Level: " + level.ToString());
 		}
