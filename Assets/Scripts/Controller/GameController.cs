@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject enemy;
-    public GameObject tank;
+    public Tank tank;
 
     public float spawnTime;
 
@@ -25,14 +25,19 @@ public class GameController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        m_spawnTime = 0;
+        m_spawnTime = 0.5f;
         ReadHighScore();
+        tank = FindObjectOfType<Tank>();
         ui = FindObjectOfType<UIManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(tank.IsDie())
+        {
+            GameOver();
+        }
         m_spawnTime -= Time.deltaTime;
         if(m_spawnTime <= 0)
         {
@@ -83,13 +88,8 @@ public class GameController : MonoBehaviour
 		}
     }
 
-    public void SetGameOverState(bool state)
+    public void GameOver()
     {
-        isGameOver = state;
-    }
-
-    public bool IsGameOver()
-    {
-        return isGameOver;
+        Time.timeScale = 0;
     }
 }

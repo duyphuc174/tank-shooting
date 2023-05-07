@@ -15,6 +15,11 @@ public class LoadStart : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
+    public void LoadMenuScene()
+    {
+        SceneManager.LoadScene("Start");
+    }
+
     public void Quit()
     {
         Application.Quit();
