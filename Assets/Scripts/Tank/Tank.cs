@@ -73,8 +73,17 @@ public class Tank : MonoBehaviour
 
     private void Move()
     {
-		moveInput.x = Input.GetAxis("Horizontal");
-		moveInput.y = Input.GetAxis("Vertical");
+        moveInput.x = Input.GetAxis("Horizontal");
+        moveInput.y = Input.GetAxis("Vertical");
+
+        if ((transform.position.x <= -39 && moveInput.x < 0) ||
+            (transform.position.x >= 39 && moveInput.x > 0) ||
+            (transform.position.y <= -24 && moveInput.y < 0) || 
+            (transform.position.y >=24 && moveInput.y > 0))
+		{
+			return;
+
+		}
 
 		transform.position += moveInput * moveSpeed * Time.deltaTime;
 
