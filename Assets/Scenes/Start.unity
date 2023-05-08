@@ -550,8 +550,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-
-  m_text: 'Tank Rampage'
+  m_text: Tank Rampage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -565,8 +564,8 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 0.5078103, g: 0.6132076, b: 0.11222852, a: 1}
-    topRight: {r: 0, g: 0.89369106, b: 1, a: 1}
+    topLeft: {r: 0.35849053, g: 0.6852365, b: 0.8962264, a: 1}
+    topRight: {r: 0.87528837, g: 0.56981134, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
