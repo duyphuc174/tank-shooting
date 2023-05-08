@@ -5,10 +5,12 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
 	public int damage = 50;
+	public AudioClip hitSound;
+	public AudioSource aus;
 	// Start is called before the first frame update
 	void Start()
     {
-        
+        aus = FindObjectOfType<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class EnemyBullet : MonoBehaviour
 			if (tank != null)
 			{
 				tank.TakeDamage(damage);
+				aus.PlayOneShot(hitSound);
 			}
 			Destroy(this.gameObject);
 		}

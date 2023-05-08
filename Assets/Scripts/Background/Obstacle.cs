@@ -16,16 +16,4 @@ public class Obstacle : MonoBehaviour
     {
         
     }
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.CompareTag("Tank")) // kiểm tra đối tượng va chạm có phải là tank không
-		{
-			// Lưu lại vị trí trước đó của tank
-			previousPosition = collision.transform.position;
-
-			// Di chuyển tank trở lại vị trí trước đó
-			collision.transform.position = previousPosition;
-			Destroy(this.gameObject);
-		}
-	}
 }

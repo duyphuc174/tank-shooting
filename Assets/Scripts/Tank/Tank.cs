@@ -149,4 +149,14 @@ public class Tank : MonoBehaviour
         exp += _exp;
         ui.SetExpText("Exp: " + exp.ToString() + "/" + maxExp.ToString());
     }
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("Obstacle"))
+		{
+			// Stop tank movement when colliding with obstacle
+			rb.velocity = Vector2.zero;
+			rb.angularVelocity = 0f;
+		}
+	}
 }
